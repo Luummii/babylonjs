@@ -26,4 +26,9 @@ export default {
   left 180px
   right 0
   bottom 0
+
+  .renderCanvas 
+    width 100%
+    height 100%
+    touch-action none
 </style>
