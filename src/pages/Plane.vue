@@ -10,13 +10,7 @@ import * as BABYLON from 'babylonjs'
 export default {
   data () {
     return {
-      x: 0,
-      y: 0,
-      z: 20,
-      rotateZ: .01,
-      rotateX: .005,
-      rotateY: .01,
-      move: false
+      
     }
   },
   mounted() {  
