@@ -20,14 +20,11 @@ export default {
     const scene = new BABYLON.Scene(engine)      
     const camera = new BABYLON.ArcRotateCamera('Camera', Math.PI / 2, Math.PI / 2, 2, BABYLON.Vector3.Zero(), scene)
     camera.attachControl(canvas, true)
+
     const light1 = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(1, 1, 0), scene)
-    const light2 = new BABYLON.PointLight('light2', new BABYLON.Vector3(0, 1, -1), scene)
-
-    const sourcePlane = new BABYLON.Plane(0, -1, 1, 0)
-    sourcePlane.normalize()
-    
+    const light2 = new BABYLON.PointLight('light2', new BABYLON.Vector3(0, 1, -1), scene)    
     const box = BABYLON.MeshBuilder.CreateBox('box', { height: 1, width: 0.75, depth: 0.25 }, scene)    
-
+    
     engine.runRenderLoop(() => {
       scene.render()
     }) 

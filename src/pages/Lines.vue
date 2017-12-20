@@ -20,7 +20,7 @@ export default {
     const scene = new BABYLON.Scene(engine)      
     const camera = new BABYLON.ArcRotateCamera('Camera', 0, 0, 8, BABYLON.Vector3.Zero(), scene)
     camera.setPosition(new BABYLON.Vector3(5, 5, -5))
-    camera.attachControl(canvas, true)
+    camera.attachControl(canvas, false)
 
     const light = new BABYLON.HemisphericLight('light', new BABYLON.Vector3(0, 1, 0), scene)
 
