@@ -5,6 +5,7 @@ import Lines from '../pages/Lines.vue'
 import Materials from '../pages/Materials.vue'
 import BallAnimation from '../pages/BallAnimation.vue'
 import MoveAnimation from '../pages/MoveAnimation.vue'
+import ClashOfBalls from '../pages/ClashOfBalls.vue'
 
 export default [
   { path: '/Ball', name: 'Ball', component: Ball },
@@ -14,5 +15,6 @@ export default [
   { path: '/Materials', name: 'Materials', component: Materials },
   { path: '/BallAnimation', name: 'Ball Animation', component: BallAnimation },
   { path: '/MoveAnimation', name: 'Move Animation', component: MoveAnimation },
+  { path: '/ClashOfBalls', name: 'Clash Of Balls', component: ClashOfBalls },
   { path: '*', redirect: 'Ball' }
 ]
