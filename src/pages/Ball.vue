@@ -24,11 +24,12 @@ export default {
     const light2 = new BABYLON.PointLight('light2', new BABYLON.Vector3(0, 1, -1), scene)
     const sphere = BABYLON.MeshBuilder.CreateSphere('sphere', { diameter: .5 }, scene)
 
+    // Зацыкленный рендеринг сцены
     engine.runRenderLoop(() => {
       scene.render()
     }) 
 
-    window.addEventListener("resize", () => {
+    window.addEventListener('resize', () => {
       engine.resize()
     }) 
   }

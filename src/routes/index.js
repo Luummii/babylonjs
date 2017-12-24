@@ -3,14 +3,16 @@ import Box from '../pages/Box.vue'
 import Plane from '../pages/Plane.vue'
 import Lines from '../pages/Lines.vue'
 import Materials from '../pages/Materials.vue'
-import Animation from '../pages/Animation.vue'
+import BallAnimation from '../pages/BallAnimation.vue'
+import MoveAnimation from '../pages/MoveAnimation.vue'
 
 export default [
-  { path: '/', redirect: 'BallAnimation' },
   { path: '/Ball', name: 'Ball', component: Ball },
   { path: '/Box', name: 'Box', component: Box },
   { path: '/Plane', name: 'Plane', component: Plane },
   { path: '/Lines', name: 'Lines', component: Lines },
   { path: '/Materials', name: 'Materials', component: Materials },
-  { path: '/Animation', name: 'Animation', component: Animation }
+  { path: '/BallAnimation', name: 'Ball Animation', component: BallAnimation },
+  { path: '/MoveAnimation', name: 'Move Animation', component: MoveAnimation },
+  { path: '*', redirect: 'Ball' }
 ]

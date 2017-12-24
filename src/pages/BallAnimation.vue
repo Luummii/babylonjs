@@ -39,21 +39,37 @@ export default {
     })
 
     keys.push({
-      frame: 100,
+      frame: 3 * 30,
       value: 5
+    })
+
+    keys.push({
+      frame: 5 * 30,
+      value: -5
+    })
+
+    keys.push({
+      frame: 9 * 30,
+      value: 6
+    })
+
+    keys.push({
+      frame: 11 * 30,
+      value: -6
     })
 
     animation.setKeys(keys)
 
+    sphere.animations = []
     sphere.animations.push(animation)
 
-    scene.beginAnimation(sphere, 0, 100, true)
+    scene.beginAnimation(sphere, 0, 330, true)
 
     engine.runRenderLoop(() => {
       scene.render()
     }) 
 
-    window.addEventListener("resize", () => {
+    window.addEventListener('resize', () => {
       engine.resize()
     }) 
   }

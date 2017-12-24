@@ -47,7 +47,7 @@ export default {
       scene.render()
     }) 
 
-    window.addEventListener("resize", () => {
+    window.addEventListener('resize', () => {
       engine.resize()
     }) 
   }
