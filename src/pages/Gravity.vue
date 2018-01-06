@@ -33,7 +33,7 @@ export default {
 
     const box = BABYLON.Mesh.CreateBox('box', 2, scene)
     box.material = new BABYLON.StandardMaterial('boxMat', scene)
-    box.material.diffuseTexture = new BABYLON.Texture(this.textureBox, scene);
+    box.material.diffuseTexture = new BABYLON.Texture(this.textureBox, scene)
     box.material.diffuseTexture.hasAlpha = true // Через прозрачные области куба можно видеть задние поверхности
     box.position = new BABYLON.Vector3(5, -9, -10)    
     
