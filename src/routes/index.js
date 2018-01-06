@@ -7,7 +7,7 @@ import BallAnimation from '../pages/BallAnimation.vue'
 import MoveAnimation from '../pages/MoveAnimation.vue'
 import ClashOfBalls from '../pages/ClashOfBalls.vue'
 import Gravity from '../pages/Gravity.vue'
-import Colors from '../pages/Colors.vue'
+import Labirint from '../pages/Labirint.vue'
 
 export default [
   { path: '/Ball', name: 'Ball', component: Ball },
@@ -19,6 +19,6 @@ export default [
   { path: '/MoveAnimation', name: 'Move Animation', component: MoveAnimation },
   { path: '/ClashOfBalls', name: 'Clash Of Balls', component: ClashOfBalls },
   { path: '/Gravity', name: 'Gravity', component: Gravity },
-  { path: '/Colors', name: 'Colors', component: Colors },
+  { path: '/Labirint', name: 'Labirint', component: Labirint },
   { path: '*', redirect: 'Ball' }
 ]
