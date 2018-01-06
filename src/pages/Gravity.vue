@@ -35,23 +35,17 @@ export default {
     box.material = new BABYLON.StandardMaterial('boxMat', scene)
     box.material.diffuseTexture = new BABYLON.Texture(this.textureBox, scene);
     box.material.diffuseTexture.hasAlpha = true // Через прозрачные области куба можно видеть задние поверхности
-    box.position = new BABYLON.Vector3(5, -9, -10)
-
+    box.position = new BABYLON.Vector3(5, -9, -10)    
     
+    scene.gravity = new BABYLON.Vector3(0, -0.009, 0) // Определяем гравитацию
+    camera.applyGravity = true // Применяем её к камере
+    camera.ellipsoid = new BABYLON.Vector3(1, 1, 1) // Определяем размер чувака, который ходит
+    scene.collisionsEnabled = true  // Говорим что на сцене нужно обноруживать коллизии
     
-    scene.gravity = new BABYLON.Vector3(0, -0.9, 0)
-    // Enable Collisions
-    scene.collisionsEnabled = true;
-    //Then apply collisions and gravity to the active camera
-    camera.checkCollisions = true;
-    camera.applyGravity = true;
-    //Set the ellipsoid around the camera (e.g. your player's size)
-    camera.ellipsoid = new BABYLON.Vector3(1, 1, 1);
-    //finally, say which mesh will be collisionable
-    ground.checkCollisions = true;
-    box.checkCollisions = true;
-
-
+    // То, что будет участвовать в столкновениях
+    camera.checkCollisions = true
+    ground.checkCollisions = true
+    box.checkCollisions = true
 
     engine.runRenderLoop(() => {
       scene.render()
