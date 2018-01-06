@@ -18,13 +18,16 @@ export default {
     const engine = new BABYLON.Engine(canvas, true) 
 
     const scene = new BABYLON.Scene(engine)      
-    const camera = new BABYLON.ArcRotateCamera('Camera', Math.PI / 4, Math.PI / 4, 4, BABYLON.Vector3.Zero(), scene)
-    camera.attachControl(canvas, true) // true - действие по умолчанию для attachControl разрешены
-    const light1 = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(1, 1, 0), scene)
-    const light2 = new BABYLON.PointLight('light2', new BABYLON.Vector3(0, 1, -1), scene)
-    const sphere = BABYLON.MeshBuilder.CreateSphere('sphere', { diameter: .5 }, scene)
+    const camera = new BABYLON.FreeCamera('camera', new BABYLON.Vector3(0, -8, -20), scene)   
+    camera.attachControl(canvas, true)
 
-    // Зацыкленный рендеринг сцены
+    const ground = BABYLON.Mesh.CreatePlane('ground', 20.0, scene);
+    ground.material = new BABYLON.StandardMaterial('groundMat', scene);
+    ground.material.diffuseColor = new BABYLON.Color3(1, 1, 1);
+    ground.material.backFaceCulling = false;
+    ground.position = new BABYLON.Vector3(5, -10, -15);
+    ground.rotation = new BABYLON.Vector3(Math.PI / 2, 0, 0);
+
     engine.runRenderLoop(() => {
       scene.render()
     }) 
