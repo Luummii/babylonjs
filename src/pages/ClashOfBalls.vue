@@ -39,11 +39,11 @@ export default {
 
     let alpha = 0.1
     let move = false
-    scene.registerBeforeRender(() => {
+    scene.registerAfterRender(() => {
       if (balloon.intersectsMesh(plan, true)) {
-        move = !move // Такую штуку приходится делать т.к. см тут (ссылка на гит вавилона)
+        move = !move
         balloon.material.emissiveColor = new BABYLON.Color3(1, 0, 0) 
-        balloon.position.y += alpha     
+        balloon.position.y += alpha // нужно чтоб вышел из зоны столкновения    
       } else if (move) {
         balloon.material.emissiveColor = new BABYLON.Color3(1, 1, 1)
         balloon.position.y -= alpha
