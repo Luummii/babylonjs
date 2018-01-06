@@ -26,7 +26,7 @@ export default {
 
     const matPlan = new BABYLON.StandardMaterial('matPlan', scene)
     matPlan.backFaceCulling = false
-    matPlan.emissiveColor = new BABYLON.Color3.FromHexString('#FF0020')
+    matPlan.emissiveColor = new BABYLON.Color3.FromHexString('#001F9C')
 
     const plan = BABYLON.MeshBuilder.CreatePlane('plane', { width: 10, height: 10 }, scene)
     plan.material = matPlan
@@ -40,16 +40,18 @@ export default {
     let alpha = 0.1
     let move = false
     scene.registerAfterRender(() => {
-      if (balloon.intersectsMesh(plan, true)) {
+      if (balloon.intersectsMesh(plan, true)) {        
         move = !move
         balloon.material.emissiveColor = new BABYLON.Color3(1, 0, 0) 
         balloon.position.y += alpha // нужно чтоб вышел из зоны столкновения    
       } else if (move) {
+        alpha += 0.001
         balloon.material.emissiveColor = new BABYLON.Color3(1, 1, 1)
         balloon.position.y -= alpha
       } else if (!move) {
+        alpha -= 0.001
         balloon.position.y += alpha       
-        if (balloon.position.y >= 5) move = !move
+        if (alpha <= 0) move = !move
       }         
     })
     
