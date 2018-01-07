@@ -11,7 +11,8 @@ export default {
   data () {
     return {
       wallTexture: require('../assets/img/wallTexture.jpg'),
-      groundTexture: require('../assets/img/grass.jpg')
+      groundTexture: require('../assets/img/grass.jpg'),
+      ballTexture: require('../assets/img/ballTexture.png')
     }
   },
   mounted() {  
@@ -71,13 +72,21 @@ export default {
     wall[3].position.z = 250
     wall[3].rotation = new BABYLON.Vector3(0, 0, 0)
 
+    const ball = BABYLON.MeshBuilder.CreateSphere('ball', { diameter: 5 }, scene)
+    ball.material = new BABYLON.StandardMaterial('ballMat', scene)    
+    ball.material.diffuseTexture = new BABYLON.Texture(this.ballTexture, scene)
+    ball.material.diffuseTexture.hasAlpha = true
+    ball.position = new BABYLON.Vector3(50, 0, 0)
+
     scene.gravity = new BABYLON.Vector3(0, -0.9, 0)
-    camera.applyGravity = true
+    camera.applyGravity = true    
+    
     camera.ellipsoid = new BABYLON.Vector3(1, 1, 1)
     scene.collisionsEnabled = true
 
     camera.checkCollisions = true
     ground.checkCollisions = true
+    ball.checkCollisions = true
     wall[0].checkCollisions = true
     wall[1].checkCollisions = true
     wall[2].checkCollisions = true
