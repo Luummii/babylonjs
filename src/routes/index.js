@@ -7,7 +7,7 @@ import BallAnimation from '../pages/BallAnimation.vue'
 import MoveAnimation from '../pages/MoveAnimation.vue'
 import ClashOfBalls from '../pages/ClashOfBalls.vue'
 import Gravity from '../pages/Gravity.vue'
-import FootballLight from '../pages/FootballLight.vue'
+import FootballAnimation from '../pages/FootballAnimation.vue'
 
 export default [
   { path: '/Ball', name: 'Ball', component: Ball },
@@ -19,6 +19,6 @@ export default [
   { path: '/MoveAnimation', name: 'Move Animation', component: MoveAnimation },
   { path: '/ClashOfBalls', name: 'Clash Of Balls', component: ClashOfBalls },
   { path: '/Gravity', name: 'Gravity', component: Gravity },
-  { path: '/FootballLight', name: 'Football Light', component: FootballLight },
+  { path: '/FootballAnimation', name: 'Football Animation', component: FootballAnimation },
   { path: '*', redirect: 'Ball' }
 ]
