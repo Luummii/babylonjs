@@ -48,28 +48,18 @@ export default {
     wall[0].position.x = 250
     wall[0].rotation = new BABYLON.Vector3(0, Math.PI / 2, 0)
 
-    wall[1] = BABYLON.MeshBuilder.CreateBox('wall', { width: 500, height: 10, depth: 2 }, scene)
-    wall[1].material = wallMaterial
-    wall[1].material.diffuseTexture = wallTexture
-    wall[1].material.diffuseTexture.uScale = 100
-    wall[1].material.diffuseTexture.hasAlpha = true
+    wall[1] = wall[0].clone()
     wall[1].position.z = -250
+    wall[1].position.x = 0
     wall[1].rotation = new BABYLON.Vector3(0, 0, -Math.PI)
 
-    wall[2] = BABYLON.MeshBuilder.CreateBox('wall', { width: 500, height: 10, depth: 2 }, scene)
-    wall[2].material = wallMaterial
-    wall[2].material.diffuseTexture = wallTexture
-    wall[2].material.diffuseTexture.uScale = 100
-    wall[2].material.diffuseTexture.hasAlpha = true
+    wall[2] = wall[0].clone()
     wall[2].position.x = -250
     wall[2].rotation = new BABYLON.Vector3(0, Math.PI / 2, -Math.PI)
 
-    wall[3] = BABYLON.MeshBuilder.CreateBox('wall', { width: 500, height: 10, depth: 2 }, scene)
-    wall[3].material = wallMaterial
-    wall[3].material.diffuseTexture = wallTexture
-    wall[3].material.diffuseTexture.uScale = 100
-    wall[3].material.diffuseTexture.hasAlpha = true
+    wall[3] = wall[0].clone()
     wall[3].position.z = 250
+    wall[3].position.x = 0
     wall[3].rotation = new BABYLON.Vector3(0, 0, 0)
 
     const ball = BABYLON.MeshBuilder.CreateSphere('ball', { diameter: 5 }, scene)

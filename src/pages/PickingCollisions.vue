@@ -33,7 +33,6 @@ export default {
       if (pickResult.hit) {
           impact.position.x = pickResult.pickedPoint.x
           impact.position.y = pickResult.pickedPoint.y
-          impact.position.z = pickResult.pickedPoint.z
       }
     }  
     
