@@ -20,7 +20,7 @@ export default {
     const engine = new BABYLON.Engine(canvas, true) 
 
     const scene = new BABYLON.Scene(engine)      
-    // const camera = new BABYLON.ArcRotateCamera('Camera', Math.PI / 3, Math.PI / 3, 800, new BABYLON.Vector3(0, 10, 20), scene)
+    // const camera = new BABYLON.ArcRotateCamera('Camera', Math.PI / 3, Math.PI / 3, 400, new BABYLON.Vector3(0, 10, 20), scene)
     const camera = new BABYLON.FreeCamera('camera', new BABYLON.Vector3(0, 0, 0), scene)   
     camera.attachControl(canvas, true)
 
@@ -91,6 +91,62 @@ export default {
     wall[1].checkCollisions = true
     wall[2].checkCollisions = true
     wall[3].checkCollisions = true
+
+    const frameVal = 30
+    const animationX = new BABYLON.Animation('animation', 'position.x', frameVal, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT)
+    const animationY = new BABYLON.Animation('animation', 'position.y', frameVal, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT)
+    const animationZ = new BABYLON.Animation('animation', 'position.z', frameVal, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT)
+
+    const keysX = []
+    const keysY = []
+    const keysZ = []
+    
+    keysX.push({
+      frame: 0,
+      value: 0
+    })
+    keysX.push({
+      frame: 2 * frameVal,
+      value: 10
+    })
+    keysX.push({
+      frame: 4 * frameVal,
+      value: 20
+    })
+    keysX.push({
+      frame: 40 * frameVal,
+      value: 200
+    })
+
+    keysY.push({
+      frame: 2 * frameVal,
+      value: 10
+    })
+    keysY.push({
+      frame: 7 * frameVal,
+      value: 100
+    })
+
+    keysZ.push({
+      frame: 2 * frameVal,
+      value: 0
+    })
+    keysZ.push({
+      frame: 20 * frameVal,
+      value: 300
+    })
+
+    animationX.setKeys(keysX)
+    animationY.setKeys(keysY)
+    animationZ.setKeys(keysZ)
+
+    ball.animations = []
+    ball.animations.push(animationX)
+    ball.animations.push(animationY)
+    ball.animations.push(animationZ)
+
+
+    scene.beginAnimation(ball, 0, 100000, false)
 
     engine.runRenderLoop(() => {
       scene.render()

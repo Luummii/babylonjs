@@ -32,7 +32,7 @@ export default {
 
     const animation = new BABYLON.Animation('animation', 'position.z', 30, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE)
 
-    var keys = []
+    const keys = []
     keys.push({
       frame: 0,
       value: 0
