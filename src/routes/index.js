@@ -10,6 +10,7 @@ import Gravity from '../pages/Gravity.vue'
 import FootballAnimation from '../pages/FootballAnimation.vue'
 import PickingCollisions from '../pages/PickingCollisions.vue'
 import LazerBuilding from '../pages/LazerBuilding.vue'
+import Sprites from '../pages/Sprites.vue'
 
 export default [
   { path: '/Ball', name: 'Ball', component: Ball },
@@ -24,5 +25,6 @@ export default [
   { path: '/FootballAnimation', name: 'Football Animation', component: FootballAnimation },
   { path: '/PickingCollisions', name: 'Picking Collisions', component: PickingCollisions },
   { path: '/LazerBuilding', name: 'Lazer Building', component: LazerBuilding },
+  { path: '/Sprites', name: 'Sprites', component: Sprites },
   { path: '*', redirect: 'Ball' }
 ]
