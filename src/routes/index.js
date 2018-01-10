@@ -11,6 +11,7 @@ import FootballAnimation from '../pages/FootballAnimation.vue'
 import PickingCollisions from '../pages/PickingCollisions.vue'
 import LazerBuilding from '../pages/LazerBuilding.vue'
 import Sprites from '../pages/Sprites.vue'
+import Particle from '../pages/Particle.vue'
 
 export default [
   { path: '/Ball', name: 'Ball', component: Ball },
@@ -26,5 +27,6 @@ export default [
   { path: '/PickingCollisions', name: 'Picking Collisions', component: PickingCollisions },
   { path: '/LazerBuilding', name: 'Lazer Building', component: LazerBuilding },
   { path: '/Sprites', name: 'Sprites', component: Sprites },
+  { path: '/Particle', name: 'Particle', component: Particle },
   { path: '*', redirect: 'Ball' }
 ]
