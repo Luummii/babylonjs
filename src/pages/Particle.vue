@@ -17,7 +17,9 @@ export default {
     const canvas = document.getElementsByClassName('renderCanvas')[0]
     const engine = new BABYLON.Engine(canvas, true) 
 
-    const scene = new BABYLON.Scene(engine)          
+    const scene = new BABYLON.Scene(engine)  
+    scene.clearColor = new BABYLON.Color3.Green()
+
     const camera = new BABYLON.ArcRotateCamera('Camera', 1, 0.8, 20, BABYLON.Vector3.Zero(), scene)
     camera.attachControl(canvas, true)
     
@@ -26,7 +28,6 @@ export default {
     const ground = BABYLON.Mesh.CreatePlane('ground', 50.0, scene)
     ground.position = new BABYLON.Vector3(0, -10, 0)
     ground.rotation = new BABYLON.Vector3(Math.PI / 2, 0, 0)
-
     ground.material = new BABYLON.StandardMaterial('groundMat', scene)
     ground.material.backFaceCulling = false
     ground.material.diffuseColor = new BABYLON.Color3(0.3, 0.3, 1)

@@ -12,6 +12,7 @@ import PickingCollisions from '../pages/PickingCollisions.vue'
 import LazerBuilding from '../pages/LazerBuilding.vue'
 import Sprites from '../pages/Sprites.vue'
 import Particle from '../pages/Particle.vue'
+import Skybox from '../pages/Skybox.vue'
 
 export default [
   { path: '/Ball', name: 'Ball', component: Ball },
@@ -28,5 +29,6 @@ export default [
   { path: '/LazerBuilding', name: 'Lazer Building', component: LazerBuilding },
   { path: '/Sprites', name: 'Sprites', component: Sprites },
   { path: '/Particle', name: 'Particle', component: Particle },
+  { path: '/Skybox', name: 'Skybox', component: Skybox },
   { path: '*', redirect: 'Ball' }
 ]
