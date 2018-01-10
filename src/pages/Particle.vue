@@ -92,6 +92,7 @@ export default {
 
     // Зацыкленный рендеринг сцены
     engine.runRenderLoop(() => {
+      particleSource.rotation.x += .01
       scene.render()
     }) 
 
