@@ -17,7 +17,7 @@ export default {
     const canvas = document.getElementsByClassName('renderCanvas')[0]
     const engine = new BABYLON.Engine(canvas, true) 
 
-    const scene = new BABYLON.Scene(engine)      
+    const scene = new BABYLON.Scene(engine)          
     const camera = new BABYLON.ArcRotateCamera('Camera', Math.PI / 4, Math.PI / 4, 4, BABYLON.Vector3.Zero(), scene)
     camera.attachControl(canvas, true) // true - действие по умолчанию для attachControl разрешены
     const light1 = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(1, 1, 0), scene)
