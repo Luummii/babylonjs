@@ -32,6 +32,7 @@ export default {
     ground.material.diffuseColor = new BABYLON.Color3(0.3, 0.3, 1)
 
     const particleSource = BABYLON.Mesh.CreateBox('particleSource', 1.0, scene)
+    
     // Создаем систему частиц
     const particleSystem = new BABYLON.ParticleSystem('particles', 2000, scene)
 
@@ -41,9 +42,51 @@ export default {
     // Определяем источник
     particleSystem.emitter = particleSource
 
+    // Максимальное  и минимальное расстояние выпрыскивания.
+    // Грубо говоря, начало и конец луча на протяжении которого происходит появление частиц 
     particleSystem.minEmitBox = new BABYLON.Vector3(-1, 0, 0)
     particleSystem.maxEmitBox = new BABYLON.Vector3(1, 0, 0)
 
+    // Внутрений цвет частиц
+    particleSystem.color1 = new BABYLON.Color4(0.7, 0.8, 1.0, 1.0)
+    particleSystem.color2 = new BABYLON.Color4(0.2, 0.5, 1.0, 1.0)
+    // Цвет когда частица умирает
+    particleSystem.colorDead = new BABYLON.Color4(0, 0, 0.2, 0.0)
+
+    // Размер, устанавливается рандомно сам
+    particleSystem.minSize = 0.1
+    particleSystem.maxSize = 0.5
+
+    // Время жизни
+    particleSystem.minLifeTime = 0.3
+    particleSystem.maxLifeTime = 1.5
+
+    // Сколько частиц будет постояно выделятся, проще говоря - плотность
+    particleSystem.emitRate = 1500
+
+    // Разовый выплеск
+    // particleSystem.manualEmitCount = 1500
+
+    // Выбор по умолчанию: цвет источника добавляется к цвету назначения без альфа-эффекта
+    particleSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE
+    // particleSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_STANDARD
+
+    // Гравитация
+    particleSystem.gravity = new BABYLON.Vector3(0, -9.81, 0)
+
+    // Направление распространения самой частицы. Устанавливается случайное между двумя
+    particleSystem.direction1 = new BABYLON.Vector3(-7, 8, 3)
+    particleSystem.direction2 = new BABYLON.Vector3(7, 8, -3)
+
+    // Угол поворота частиц
+    particleSystem.minAngularSpeed = 0
+    particleSystem.maxAngularSpeed = Math.PI
+
+    // Скорость
+    particleSystem.minEmitPower = 1
+    particleSystem.maxEmitPower = 3
+    particleSystem.updateSpeed = 0.005
+    
     // Запускаем частицы
     particleSystem.start()
 
