@@ -10,7 +10,7 @@ import * as BABYLON from 'babylonjs'
 export default {
   data () {
     return {
-      sky: require('../assets/img/sky/SpecularHDR.dds')
+      sky: require('../assets/img/dds/SpecularHDR.dds')
     }
   },
   mounted() {  
@@ -19,23 +19,17 @@ export default {
 
     const scene = new BABYLON.Scene(engine)
 
-    const camera = new BABYLON.ArcRotateCamera('Camera', Math.PI / 2, Math.PI / 2, 2, BABYLON.Vector3.Zero(), scene)
+    const camera = new BABYLON.ArcRotateCamera('Camera', Math.PI / 2, Math.PI / 2, 20, BABYLON.Vector3.Zero(), scene)
     camera.setTarget(BABYLON.Vector3.Zero())
     camera.attachControl(canvas, true)
 
     const light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene)
 
-    var skybox = BABYLON.MeshBuilder.CreateBox('skybox', 1000, scene)
-    var skyboxMaterial = new BABYLON.StandardMaterial('skyBox', scene)
-    skyboxMaterial.backFaceCulling = false
-    
-    skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture(this.sky, scene)
+    const sphere = BABYLON.Mesh.CreateSphere('sphere', 32, 1, scene)
+    const sphereMaterial = new BABYLON.StandardMaterial('sphereMaterial', scene)
 
-    skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE
-    skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0)
-    skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0)
-    skybox.material = skyboxMaterial
-    skybox.rotate(BABYLON.Axis.Y, - Math.PI / 2)
+    const texture = new BABYLON.CubeTexture(this.sky, scene)
+    scene.createDefaultSkybox(texture, true, 100)
 
 
     
