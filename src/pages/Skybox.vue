@@ -10,7 +10,12 @@ import * as BABYLON from 'babylonjs'
 export default {
   data () {
     return {
-      sky: require('../assets/img/dds/SpecularHDR.dds')
+      sky: [require('../assets/img/skybox/skybox_nx.jpg'),
+            require('../assets/img/skybox/skybox_ny.jpg'),
+            require('../assets/img/skybox/skybox_nz.jpg'),
+            require('../assets/img/skybox/skybox_px.jpg'),
+            require('../assets/img/skybox/skybox_py.jpg'),
+            require('../assets/img/skybox/skybox_pz.jpg')]
     }
   },
   mounted() {  
@@ -28,10 +33,8 @@ export default {
     const sphere = BABYLON.Mesh.CreateSphere('sphere', 32, 1, scene)
     const sphereMaterial = new BABYLON.StandardMaterial('sphereMaterial', scene)
 
-    const texture = new BABYLON.CubeTexture(this.sky, scene)
+    const texture = new BABYLON.CubeTexture('/img/skybox', scene)
     scene.createDefaultSkybox(texture, true, 100)
-
-
     
     engine.runRenderLoop(() => {
       scene.render()

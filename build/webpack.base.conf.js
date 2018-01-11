@@ -38,7 +38,7 @@ export default {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: path.join('img', '[name].[hash:7].[ext]')
+          name: path.join('img', '[name].[ext]')
         }
       },
       {
