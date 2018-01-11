@@ -10,7 +10,12 @@ import * as BABYLON from 'babylonjs'
 export default {
   data () {
     return {
-      
+      sky: [require('../assets/img/skybox/skybox_nx.jpg'),
+            require('../assets/img/skybox/skybox_ny.jpg'),
+            require('../assets/img/skybox/skybox_nz.jpg'),
+            require('../assets/img/skybox/skybox_px.jpg'),
+            require('../assets/img/skybox/skybox_py.jpg'),
+            require('../assets/img/skybox/skybox_pz.jpg')]
     }
   },
   mounted () {  
