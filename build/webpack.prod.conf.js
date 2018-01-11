@@ -70,7 +70,7 @@ export default merge(baseConf, {
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, '../static'),
-        to: path.join(__dirname, '..', 'dist/img/static'),
+        to: path.join(__dirname, '..', 'dist'),
         ignore: ['.*']
       }
     ])
