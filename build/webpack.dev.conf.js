@@ -39,12 +39,12 @@ export default merge(baseConf, {
     }),
     new webpack.HotModuleReplacementPlugin(),
     // copy custom static assets
-    /* new CopyWebpackPlugin([
+    new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, '../static'),
-        to: path.join(__dirname, '..', 'dist/img/static'),
+        to: 'static',
         ignore: ['.*']
       }
-    ]) */
+    ])
   ]
 })
