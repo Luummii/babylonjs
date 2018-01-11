@@ -34,7 +34,7 @@ export default {
         include: [path.join(__dirname, '..', 'src')]
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        test: /\.(png|jpe?g|gif|svg|dds)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
