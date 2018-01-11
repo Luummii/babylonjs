@@ -18,7 +18,7 @@ export default {
             require('../assets/img/skybox/skybox_pz.jpg')]
     }
   },
-  mounted() {  
+  mounted () {  
     const canvas = document.getElementsByClassName('renderCanvas')[0]
     const engine = new BABYLON.Engine(canvas, true) 
 
