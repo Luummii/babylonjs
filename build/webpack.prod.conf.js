@@ -4,6 +4,8 @@ import ProgressBarPlugin from 'progress-bar-webpack-plugin'
 import CompressionPlugin from 'compression-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import OptimizeCSSPlugin from 'optimize-css-assets-webpack-plugin'
+import CopyWebpackPlugin from 'copy-webpack-plugin'
+import path from 'path'
 import merge from 'webpack-merge'
 import { styleLoaders } from './utils'
 import config from './config'
@@ -63,6 +65,14 @@ export default merge(baseConf, {
         unsafe: true
       },
       sourceMap: true
-    })
+    }),
+    // copy custom static assets
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../static'),
+        to: path.join(__dirname, '..', 'dist/img/static'),
+        ignore: ['.*']
+      }
+    ])
   ]
 })

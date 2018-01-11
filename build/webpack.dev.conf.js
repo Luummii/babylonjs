@@ -2,6 +2,7 @@ import path from 'path'
 import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
+import CopyWebpackPlugin from 'copy-webpack-plugin'
 import merge from 'webpack-merge'
 
 import { styleLoaders } from './utils'
@@ -36,6 +37,14 @@ export default merge(baseConf, {
     new webpack.DefinePlugin({
       'process.env': env
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    // copy custom static assets
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../static'),
+        to: path.join(__dirname, '..', 'dist/img/static'),
+        ignore: ['.*']
+      }
+    ])
   ]
 })
