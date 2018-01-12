@@ -10,7 +10,7 @@ import * as BABYLON from 'babylonjs'
 export default {
   data () {
     return {
-      groundTexture: [require('../assets/img/textureMountain.jpg'), require('../assets/img/textureMountain.jpg')]
+      groundTexture: [require('../assets/img/ground.jpg'), require('../assets/img/ground.jpg')]
     }
   },
   mounted() {  
@@ -32,19 +32,30 @@ export default {
     const groundMaterial = new BABYLON.StandardMaterial('ground', scene)
     groundMaterial.diffuseTexture = new BABYLON.Texture(this.groundTexture[0], scene)
 
-    const ground = BABYLON.Mesh.CreateGroundFromHeightMap('ground', this.groundTexture[1], 200, 200, 250, 0, 10, scene, false)
+    const ground = BABYLON.Mesh.CreateGroundFromHeightMap('ground', this.groundTexture[1], 100, 100, 100, 0, 10, scene, false)
     ground.material = groundMaterial
 
-    // Skybox
-    /* const skybox = BABYLON.MeshBuilder.CreateBox('skyBox', { width: 1000, height: 5000, depth: 1000 }, scene)
-    const skyboxMaterial = new BABYLON.StandardMaterial('skyBox', scene)
-    skyboxMaterial.backFaceCulling = false
-    skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture('/static/skybox2/skybox', scene)
-    skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE
-    skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0)
-    skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0)
-    skyboxMaterial.disableLighting = true
-    skybox.material = skyboxMaterial */
+    const torus = BABYLON.Mesh.CreateTorus('torus', 4, 2, 30, scene, false)
+
+    const shadowGenerator = new BABYLON.ShadowGenerator(1024, light)
+    // Закидываем объект на котором будем строить тень
+    shadowGenerator.getShadowMap().renderList.push(torus)
+    // Сила тени когда объект приближается или отдаляется от неё
+    shadowGenerator.frustumEdgeFalloff = 1.0
+    // Делаем размытие
+    shadowGenerator.useBlurExponentialShadowMap = true
+    // Не пересчитывать тень светом
+    light.autoUpdateExtends = false
+    // Устанавливаем, где будут отображатся тени
+    ground.receiveShadows = true
+
+    let alpha = 0
+    scene.registerBeforeRender(() => {
+      torus.rotation.x += 0.01
+      torus.rotation.z += 0.02
+      torus.position = new BABYLON.Vector3(Math.cos(alpha) * 30, 10, Math.sin(alpha) * 30)
+      alpha += 0.01
+    })
     
     engine.runRenderLoop(() => {
       scene.render()
