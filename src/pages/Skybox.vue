@@ -28,7 +28,7 @@ export default {
     const sphere = BABYLON.Mesh.CreateSphere('sphere', 32, 1, scene)
     const sphereMaterial = new BABYLON.StandardMaterial('sphereMaterial', scene)
 
-    const texture = new BABYLON.CubeTexture('/static/skybox/skybox', scene)
+    const texture = new BABYLON.CubeTexture('/static/skybox1/skybox', scene)
     scene.createDefaultSkybox(texture, true, 100)
     
     engine.runRenderLoop(() => {

@@ -13,7 +13,8 @@ import LazerBuilding from '../pages/LazerBuilding.vue'
 import Sprites from '../pages/Sprites.vue'
 import Particle from '../pages/Particle.vue'
 import Skybox from '../pages/Skybox.vue'
-import WorldMap from '../pages/WorldMap.vue'
+import UnknownPlanet from '../pages/UnknownPlanet.vue'
+import Shadows from '../pages/Shadows.vue'
 
 export default [
   { path: '/Ball', name: 'Ball', component: Ball },
@@ -31,6 +32,7 @@ export default [
   { path: '/Sprites', name: 'Sprites', component: Sprites },
   { path: '/Particle', name: 'Particle', component: Particle },
   { path: '/Skybox', name: 'Skybox', component: Skybox },
-  { path: '/WorldMap', name: 'World Map', component: WorldMap },
+  { path: '/UnknownPlanet', name: 'Unknown Planet', component: UnknownPlanet },
+  { path: '/Shadows', name: 'Shadows', component: Shadows },
   { path: '*', redirect: 'Ball' }
 ]
