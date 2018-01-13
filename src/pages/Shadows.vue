@@ -56,6 +56,9 @@ export default {
       torus.position = new BABYLON.Vector3(Math.cos(alpha) * 30, 10, Math.sin(alpha) * 30)
       alpha += 0.01
     })
+
+    // дебаг панель
+    scene.debugLayer.show()
     
     engine.runRenderLoop(() => {
       scene.render()
