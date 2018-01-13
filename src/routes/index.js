@@ -15,6 +15,7 @@ import Particle from '../pages/Particle.vue'
 import Skybox from '../pages/Skybox.vue'
 import UnknownPlanet from '../pages/UnknownPlanet.vue'
 import Shadows from '../pages/Shadows.vue'
+import Decal from '../pages/Decal.vue'
 
 export default [
   { path: '/Ball', name: 'Ball', component: Ball },
@@ -34,5 +35,6 @@ export default [
   { path: '/Skybox', name: 'Skybox', component: Skybox },
   { path: '/UnknownPlanet', name: 'Unknown Planet', component: UnknownPlanet },
   { path: '/Shadows', name: 'Shadows', component: Shadows },
+  { path: '/Decal', name: 'Decal', component: Decal },
   { path: '*', redirect: 'Ball' }
 ]

@@ -13,10 +13,9 @@ export default {
       groundTexture: [require('../assets/img/ground.jpg'), require('../assets/img/ground.jpg')]
     }
   },
-  mounted() {  
-    const canvas = document.getElementsByClassName('renderCanvas')[0]
+  mounted() {
+    const canvas = document.getElementsByClassName('renderCanvas')[0]    
     const engine = new BABYLON.Engine(canvas, true) 
-
     const scene = new BABYLON.Scene(engine) 
 
     const light = new BABYLON.DirectionalLight('light', new BABYLON.Vector3(-1, -2, -1), scene)
