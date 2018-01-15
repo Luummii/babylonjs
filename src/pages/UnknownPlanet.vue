@@ -37,15 +37,14 @@ export default {
     ground.material = groundMaterial
 
     // Skybox
-    /* const skybox = BABYLON.MeshBuilder.CreateBox('skyBox', { width: 1000, height: 5000, depth: 1000 }, scene)
-    const skyboxMaterial = new BABYLON.StandardMaterial('skyBox', scene)
-    skyboxMaterial.backFaceCulling = false
-    skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture('/static/skybox2/skybox', scene)
-    skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE
-    skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0)
-    skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0)
-    skyboxMaterial.disableLighting = true
-    skybox.material = skyboxMaterial */
+    const stars = BABYLON.MeshBuilder.CreateBox('stars', { size: 5000, sideOrientation: BABYLON.Mesh.BACKSIDE }, scene)
+    const starMat = new BABYLON.StandardMaterial('stars', scene)
+    const urlStar = "http://jerome.bousquie.fr/BJS/images/stars1.jpg"
+    const texStar = new BABYLON.Texture(urlStar, scene)
+    texStar.uScale = 3
+    texStar.vScale = 3
+    starMat.diffuseTexture = texStar
+    stars.material = starMat
     
     engine.runRenderLoop(() => {
       scene.render()
