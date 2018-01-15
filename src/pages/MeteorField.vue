@@ -50,13 +50,13 @@ export default {
     const fact = 600 // разброс
 
     // Создание вершин
-    const myVertexFunction = (particle, vertex, i) => {
+    const vertex = (particle, vertex, i) => {
       vertex.x *= (Math.random() + 1)
       vertex.y *= (Math.random() + 1)
       vertex.z *= (Math.random() + 1)
     }
 
-    const myPositionFunction = (particle, i, s) => {  
+    const position = (particle, i, s) => {  
       // i - глобальный индекс частицы    
       // s - индексч на конкретной сетке SPS.addShape() может быть много  
       const scaleX = Math.random() * 2 + 0.8
@@ -76,7 +76,7 @@ export default {
     const SPS = new BABYLON.SolidParticleSystem('SPS', scene)
 
     const sphere = BABYLON.MeshBuilder.CreateSphere('sphere', { diameter: 6, segments: 8 }, scene)
-    SPS.addShape(sphere, 1000, { positionFunction: myPositionFunction, vertexFunction: myVertexFunction })
+    SPS.addShape(sphere, 1000, { positionFunction: position, vertexFunction: vertex })
     
     const mesh = SPS.buildMesh()
     mesh.material = meteorMaterial
@@ -88,7 +88,7 @@ export default {
       pointLight.position = camera.position
       SPS.mesh.rotation.y += 0.001
       SPS.mesh.position.y = Math.sin((k - Date.now())/1000) * 2
-      k += 0.02;
+      k += 0.02
     })
     
     engine.runRenderLoop(() => {
