@@ -39,7 +39,7 @@ export default {
     // Skybox
     const stars = BABYLON.MeshBuilder.CreateBox('stars', { size: 5000, sideOrientation: BABYLON.Mesh.BACKSIDE }, scene)
     const starMat = new BABYLON.StandardMaterial('stars', scene)
-    const urlStar = "http://jerome.bousquie.fr/BJS/images/stars1.jpg"
+    const urlStar = 'http://jerome.bousquie.fr/BJS/images/stars1.jpg'
     const texStar = new BABYLON.Texture(urlStar, scene)
     texStar.uScale = 3
     texStar.vScale = 3
