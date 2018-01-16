@@ -63,6 +63,7 @@ export default {
     const moon = BABYLON.MeshBuilder.CreateSphere('moon', { diameterX: 1.5, diameterY: 1.3, diameterZ: 1.5 }, scene)
     moon.material = moonMaterial    
     moon.parent = earth
+    camera.parent = moon
 
     const vertex = (particle, vertex, i) => {
       vertex.x *= (Math.random() + 1)
@@ -91,7 +92,6 @@ export default {
       particle.rotation.x = Math.random() * 3.5
       particle.rotation.y = Math.random() * 3.5
       particle.rotation.z = Math.random() * 3.5
-      console.log(particle.position)
     }
 
     var gravity = BABYLON.Vector3.Zero()
@@ -104,7 +104,6 @@ export default {
       particle.velocity.addInPlace(gravity)                            
       particle.position.addInPlace(particle.velocity)                               
     }
-
     
     let alpha = 0
     scene.registerBeforeRender(() => {
