@@ -10,7 +10,7 @@ import * as BABYLON from 'babylonjs'
 export default {
   data () {
     return {
-      groundTexture: [require('../assets/img/textureMountain.jpg'), require('../assets/img/textureMountain.jpg')]
+      
     }
   },
   mounted() {  
