@@ -74,6 +74,34 @@ export default {
       alpha += 0.005
     })
 
+
+    const vertex = (particle, vertex, i) => {
+      vertex.x *= (Math.random() + 1)
+      vertex.y *= (Math.random() + 1)
+      vertex.z *= (Math.random() + 1)
+    }
+
+    const position = (particle, i, s) => {
+      particle.scale.x = Math.random()
+      particle.scale.y = Math.random()
+      particle.scale.z = Math.random()
+      particle.position.x = (Math.random() - 0.5) * 600
+      particle.position.y = (Math.random() - 0.5) * 600
+      particle.position.z = (Math.random() - 0.5) * 600
+      particle.rotation.x = Math.random() * 3.5
+      particle.rotation.y = Math.random() * 3.5
+      particle.rotation.z = Math.random() * 3.5
+    }
+
+    const SPS = new BABYLON.SolidParticleSystem('SPS', scene)
+
+    const meteor = BABYLON.MeshBuilder.CreateSphere('meteor', { diameter: 2, segments: 8 }, scene)
+    SPS.addShape(meteor, 1000, { positionFunction: position, vertexFunction: vertex })    
+    const mesh = SPS.buildMesh()
+    mesh.material = meteorMaterial
+    meteor.dispose()
+    
+
     engine.runRenderLoop(() => {
       scene.render()
     }) 
