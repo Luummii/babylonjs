@@ -64,43 +64,57 @@ export default {
     moon.material = moonMaterial    
     moon.parent = earth
 
-    // SPS animation
-    let alpha = 0
-    scene.registerBeforeRender(() => {
-      pointLight.position = camera.position     
-      earth.rotation.y += 0.001
-      earth.rotation.z -= 0.0005     
-      moon.position = new BABYLON.Vector3(10 * Math.sin(alpha), moon.parent.position.y, 10 * Math.cos(alpha))          
-      alpha += 0.005
-    })
-
-
     const vertex = (particle, vertex, i) => {
       vertex.x *= (Math.random() + 1)
       vertex.y *= (Math.random() + 1)
       vertex.z *= (Math.random() + 1)
     }
 
-    const position = (particle, i, s) => {
-      particle.scale.x = Math.random()
-      particle.scale.y = Math.random()
-      particle.scale.z = Math.random()
-      particle.position.x = (Math.random() - 0.5) * 600
-      particle.position.y = (Math.random() - 0.5) * 600
-      particle.position.z = (Math.random() - 0.5) * 600
-      particle.rotation.x = Math.random() * 3.5
-      particle.rotation.y = Math.random() * 3.5
-      particle.rotation.z = Math.random() * 3.5
-    }
+    const SPS = new BABYLON.SolidParticleSystem('SPS', scene, { /* начинается сразу образование частиц */ particleIntersection: true })
 
-    const SPS = new BABYLON.SolidParticleSystem('SPS', scene)
-
-    const meteor = BABYLON.MeshBuilder.CreateSphere('meteor', { diameter: 2, segments: 8 }, scene)
-    SPS.addShape(meteor, 1000, { positionFunction: position, vertexFunction: vertex })    
+    const meteor = BABYLON.MeshBuilder.CreateSphere('meteor', { diameter: .3, segments: 8 }, scene)
+    SPS.addShape(meteor, 1, { vertexFunction: vertex })    
     const mesh = SPS.buildMesh()
     mesh.material = meteorMaterial
     meteor.dispose()
+
+    SPS.isAlwaysVisible = true
+
+    SPS.recycleParticle = (particle) => {
+      particle.velocity.x = -0.05
+      particle.velocity.z = -0.05
+      particle.velocity.y = 0
+      particle.scale.x = Math.random() * 2 + 0.8
+      particle.scale.y = Math.random() + 0.8
+      particle.scale.z = Math.random() * 2 + 0.8
+      particle.position = new BABYLON.Vector3(5, 5, 8)
+      particle.rotation.x = Math.random() * 3.5
+      particle.rotation.y = Math.random() * 3.5
+      particle.rotation.z = Math.random() * 3.5
+      console.log(particle.position)
+    }
+
+    var gravity = BABYLON.Vector3.Zero()
+
+    SPS.updateParticle = (particle) => {
+      if (Math.abs(particle.position.x) > 10 || Math.abs(particle.position.y) > 10 || Math.abs(particle.position.z) > 10 || particle.intersectsMesh(moon)) {
+        SPS.recycleParticle(particle)
+        return
+      }        
+      particle.velocity.addInPlace(gravity)                            
+      particle.position.addInPlace(particle.velocity)                               
+    }
+
     
+    let alpha = 0
+    scene.registerBeforeRender(() => {
+      pointLight.position = camera.position     
+      earth.rotation.y += 0.001
+      earth.rotation.z -= 0.0005     
+      moon.position = new BABYLON.Vector3(10 * Math.sin(alpha), moon.parent.position.y, 10 * Math.cos(alpha))          
+      alpha += 0.005 
+      SPS.setParticles()     
+    })
 
     engine.runRenderLoop(() => {
       scene.render()
