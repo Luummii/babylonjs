@@ -10,7 +10,7 @@ import * as BABYLON from 'babylonjs'
 export default {
   data () {
     return {
-      
+      groundTexture: [require('../assets/img/textureMountain.jpg'), require('../assets/img/textureMountain.jpg')]
     }
   },
   mounted() {  
@@ -47,9 +47,41 @@ export default {
     starMat.diffuseTexture = texStar
     stars.material = starMat
 
+    const fact = 600 // разброс
+
+    // Создание вершин
+    const vertex = (particle, vertex, i) => {
+      vertex.x *= (Math.random() + 1)
+      vertex.y *= (Math.random() + 1)
+      vertex.z *= (Math.random() + 1)
+    }
+
+    const position = (particle, i, s) => {  
+      // i - глобальный индекс частицы    
+      // s - индексч на конкретной сетке SPS.addShape() может быть много  
+      const scaleX = Math.random() * 2 + 0.8
+      const scaleY = Math.random() + 0.8
+      const scaleZ = Math.random() * 2 + 0.8
+      particle.scale.x = scaleX
+      particle.scale.y = scaleY
+      particle.scale.z = scaleZ
+      particle.position.x = (Math.random() - 0.5) * fact
+      particle.position.y = (Math.random() - 0.5) * fact
+      particle.position.z = (Math.random() - 0.5) * fact
+      particle.rotation.x = Math.random() * 3.5
+      particle.rotation.y = Math.random() * 3.5
+      particle.rotation.z = Math.random() * 3.5
+    }
+
+    const SPS = new BABYLON.SolidParticleSystem('SPS', scene)
+
     const sphere = BABYLON.MeshBuilder.CreateSphere('sphere', { diameter: 6, segments: 8 }, scene)
-    sphere.material = meteorMaterial
+    SPS.addShape(sphere, 1000, { positionFunction: position, vertexFunction: vertex })
     
+    const mesh = SPS.buildMesh()
+    mesh.material = meteorMaterial
+    sphere.dispose()
+
     // SPS animation
     let k = Date.now()
     scene.registerBeforeRender(function() {
