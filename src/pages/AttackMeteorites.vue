@@ -10,24 +10,24 @@ import * as BABYLON from 'babylonjs'
 export default {
   data () {
     return {
-      
+      earth: require('../assets/img/earth.jpg'),
+      moon: require('../assets/img/moon.jpg')
     }
   },
   mounted() {  
-const canvas = document.getElementsByClassName('renderCanvas')[0]
+    const canvas = document.getElementsByClassName('renderCanvas')[0]
     const engine = new BABYLON.Engine(canvas, true) 
 
     const scene = new BABYLON.Scene(engine)
 
-    const camera = new BABYLON.ArcRotateCamera('camera', 0, 0.8, 10, BABYLON.Vector3.Zero(), scene)
-    camera.setPosition(new BABYLON.Vector3(0, 50, -100))
+    const camera = new BABYLON.ArcRotateCamera('camera', Math.PI, Math.PI / 4, 30, BABYLON.Vector3.Zero(), scene)
     camera.attachControl(canvas, true)
 
     const light = new BABYLON.HemisphericLight('light', new BABYLON.Vector3(1, 0, 0), scene)
     light.intensity = 0.75
     light.specular = new BABYLON.Color3(0, 0, 0)
 
-    const pointLight = new BABYLON.PointLight('pl', new BABYLON.Vector3(0, 0, 0), scene)
+    const pointLight = new BABYLON.PointLight('pointLight', BABYLON.Vector3.Zero(), scene)
     pointLight.diffuse = new BABYLON.Color3(1, 1, 1)
     pointLight.specular = new BABYLON.Color3(0.1, 0.1, 0.12)
     pointLight.intensity = 0.75
@@ -36,6 +36,14 @@ const canvas = document.getElementsByClassName('renderCanvas')[0]
     const meteorMaterial = new BABYLON.StandardMaterial('meteor', scene)
     meteorMaterial.diffuseTexture = new BABYLON.Texture(meteorMaterialUrl, scene)
     meteorMaterial.backFaceCulling = false
+
+    const earthMaterial = new BABYLON.StandardMaterial('meteor', scene)
+    earthMaterial.diffuseTexture = new BABYLON.Texture(this.earth, scene)
+    earthMaterial.backFaceCulling = false
+
+    const moonMaterial = new BABYLON.StandardMaterial('meteor', scene)
+    moonMaterial.diffuseTexture = new BABYLON.Texture(this.moon, scene)
+    moonMaterial.backFaceCulling = false
 
     // Skybox
     const stars = BABYLON.MeshBuilder.CreateBox('stars', { size: 5000, sideOrientation: BABYLON.Mesh.BACKSIDE }, scene)
@@ -47,18 +55,25 @@ const canvas = document.getElementsByClassName('renderCanvas')[0]
     starMat.diffuseTexture = texStar
     stars.material = starMat
 
-    const sphere = BABYLON.MeshBuilder.CreateSphere('sphere', { diameter: 6, segments: 8 }, scene)
-    sphere.material = meteorMaterial
+    const earth = BABYLON.MeshBuilder.CreateSphere('earth', { diameterX: 6, diameterY: 5.4, diameterZ: 6 }, scene)
+    earth.material = earthMaterial
+    earth.rotate(BABYLON.Axis.X, Math.PI, BABYLON.Space.WORLD) // (во круг чего, на что, относительно чего)
+    earth.updateFacetData()
+
+    const moon = BABYLON.MeshBuilder.CreateSphere('moon', { diameterX: 1.5, diameterY: 1.3, diameterZ: 1.5 }, scene)
+    moon.material = moonMaterial    
+    moon.parent = earth
 
     // SPS animation
-    let k = Date.now()
-    scene.registerBeforeRender(function() {
-      pointLight.position = camera.position
-      SPS.mesh.rotation.y += 0.001
-      SPS.mesh.position.y = Math.sin((k - Date.now())/1000) * 2
-      k += 0.02
+    let alpha = 0
+    scene.registerBeforeRender(() => {
+      pointLight.position = camera.position     
+      earth.rotation.y += 0.001
+      earth.rotation.z -= 0.0005     
+      moon.position = new BABYLON.Vector3(10 * Math.sin(alpha), moon.parent.position.y, 10 * Math.cos(alpha))          
+      alpha += 0.005
     })
-    
+
     engine.runRenderLoop(() => {
       scene.render()
     }) 

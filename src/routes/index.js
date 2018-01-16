@@ -17,6 +17,7 @@ import UnknownPlanet from '../pages/UnknownPlanet.vue'
 import Shadows from '../pages/Shadows.vue'
 import Decal from '../pages/Decal.vue'
 import MeteorField from '../pages/MeteorField.vue'
+import AttackMeteorites from '../pages/AttackMeteorites.vue'
 
 export default [
   { path: '/Ball', name: 'Ball', component: Ball },
@@ -38,5 +39,6 @@ export default [
   { path: '/Shadows', name: 'Shadows', component: Shadows },
   { path: '/Decal', name: 'Decal', component: Decal },
   { path: '/MeteorField', name: 'Meteor Field', component: MeteorField },
+  { path: '/AttackMeteorites', name: 'Attack Meteorites', component: AttackMeteorites },
   { path: '*', redirect: 'Ball' }
 ]
