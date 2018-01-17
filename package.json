@@ -62,6 +62,7 @@
   "dependencies": {
     "axios": "^0.17.0",
     "babylonjs": "^3.1.1",
+    "babylonjs-loaders": "^3.2.0-alpha4",
     "config": "^1.27.0",
     "knex": "^0.13.0",
     "koa": "^2.3.0",

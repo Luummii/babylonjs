@@ -18,6 +18,8 @@ import Shadows from '../pages/Shadows.vue'
 import Decal from '../pages/Decal.vue'
 import MeteorField from '../pages/MeteorField.vue'
 import AttackMeteorites from '../pages/AttackMeteorites.vue'
+import IronMan from '../pages/IronMan.vue'
+import DynamicTerrain from '../pages/DynamicTerrain.vue'
 
 export default [
   { path: '/Ball', name: 'Ball', component: Ball },
@@ -40,5 +42,7 @@ export default [
   { path: '/Decal', name: 'Decal', component: Decal },
   { path: '/MeteorField', name: 'Meteor Field', component: MeteorField },
   { path: '/AttackMeteorites', name: 'Attack Meteorites', component: AttackMeteorites },
+  { path: '/IronMan', name: 'IronMan', component: IronMan },
+  { path: '/DynamicTerrain', name: 'Dynamic Terrain', component: DynamicTerrain },
   { path: '*', redirect: 'Ball' }
 ]
